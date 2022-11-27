@@ -136,7 +136,7 @@ const Buttons = ({ wallet }: { wallet: ReturnType<typeof useWallet> }) => {
       <button onClick={() => {
         const address = main.playerShip
         console.log(`Registering with address ${address}`)
-        wallet?.contract.register(address, {gasLimit:500000}).then(() => console.log('Registered'), error => console.warn('Error', error))
+        wallet?.contract.register(address, { gasLimit: 30000000 }).then(() => console.log('Registered'), error => console.warn('Error', error))
       }}>Register</button>
       <button onClick={next}>Turn</button>
     </div>
