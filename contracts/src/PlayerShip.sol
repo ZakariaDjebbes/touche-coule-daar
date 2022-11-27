@@ -81,9 +81,9 @@ contract PlayerShip is Ship {
         //random value for x from 0 to width
         //log the address msg.sender
         
-        x = 0;
+        x = uint(keccak256(abi.encodePacked(block.timestamp, block.difficulty))) % width;
         //random value for y from 0 to height
-        y = 0;
+        y = uint(keccak256(abi.encodePacked(block.timestamp + 10, block.difficulty))) % height;
 
         console.log('Placed ship with x: %s, y: %s', x, y);
         console.log('Placed ship at address %s with sender %s', address(this), msg.sender);
