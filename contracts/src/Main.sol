@@ -2,6 +2,7 @@
 pragma solidity ^0.8;
 
 import './Ship.sol';
+import './PlayerShip.sol';
 import 'hardhat/console.sol';
 
 struct Game {
@@ -36,7 +37,11 @@ contract Main {
     emit Size(game.width, game.height);
   }
 
-  function register(address ship) external {
+  function register() external {
+    // Since every ship has a unique address, I think it would be better to create a new address for each ship and then register it instead of receiving the address as a parameter
+    Ship playerShip = new PlayerShip();
+    address ship;
+    ship = address(playerShip);
     require(count[msg.sender] < 2, 'Only two ships');
     require(!used[ship], 'Ship alread on the board');
     require(index <= game.height * game.width, 'Too much ship on board');
@@ -46,6 +51,7 @@ contract Main {
     (uint x, uint y) = placeShip(index);
     Ship(ships[index]).update(x, y);
     emit Registered(index, msg.sender, x, y);
+    used[ship] = true; // Each ship is unique !!!
     index += 1;
   }
 

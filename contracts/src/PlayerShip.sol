@@ -35,19 +35,29 @@ contract PlayerShip is Ship {
     }
 
     function fire() public override returns (uint, uint) {
+        // My strategy is quite simple, I fire from 0, 0 to width, height incrementally
+        // However if I know that a ship is at a certain position, I will fire at it directly (From the update function)
         // check if list of xs and ys is empty
         if (xs.length == 0) {
             // if yes then return the last x and y
-            lastFireX = lastX;
-            lastFireY = lastY;
-            lastX++;
 
+            // Avoid firing on my self
+            if (lastX == x && lastY == y) {
+                lastX++;
+            }
+
+            // If we reach the end of the board, we reset the x and increment the y
             if(lastX > width) {
                 lastX = 0;
                 lastY++;
                 lastFireX = lastX;
                 lastFireY = lastY;
             }
+
+            lastFireX = lastX;
+            lastFireY = lastY;
+            
+            lastX++;
         } else {
             // if no then return the first x and y
             lastFireX = xs[0];
@@ -61,6 +71,7 @@ contract PlayerShip is Ship {
     }
 
     function place(uint _width, uint _height) public override returns (uint, uint) {
+        // Place ships at a random position
         width = _width;
         height = _height;
         lastX = 0;
