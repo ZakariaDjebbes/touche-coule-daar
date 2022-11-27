@@ -4,17 +4,17 @@ import 'hardhat/console.sol';
 import './Ship.sol';
 
 contract PlayerShip is Ship {
-    uint private x;
-    uint private y;
-    uint private width;
-    uint private height;
-    uint private lastX;
-    uint private lastY;
-    uint private lastFireX;
-    uint private lastFireY;
+    uint private x; // Current x position
+    uint private y; // Current y position
+    uint private width; // Width of the board
+    uint private height; // Height of the board
+    uint private lastX; // Last x position
+    uint private lastY; // Last y position
+    uint private lastFireX; // Last position x at which we fired
+    uint private lastFireY; // Last position y at which we fired
     //list of ints
-    uint[] private xs;
-    uint[] private ys;
+    uint[] private xs; // List of x positions of previous ships, since update is called when the provided x and y are taken, we can keep track of those and fire directly at them since we know they are occupied
+    uint[] private ys; // List of y position of previous ships
 
     function update(uint _x, uint _y) public override {
         // check if its the same x and y 
