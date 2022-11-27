@@ -43,7 +43,7 @@ contract Main {
     address ship;
     ship = address(playerShip);
     require(count[msg.sender] < 2, 'Only two ships');
-    require(!used[ship], 'Ship alread on the board');
+    require(!used[ship], 'Ship alread on the board'); // <- old
     require(index <= game.height * game.width, 'Too much ship on board');
     count[msg.sender] += 1;
     ships[index] = ship;

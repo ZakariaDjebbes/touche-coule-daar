@@ -135,7 +135,7 @@ const Buttons = ({ wallet }: { wallet: ReturnType<typeof useWallet> }) => {
     <div style={{ display: 'flex', gap: 5, padding: 5 }}>
       <button onClick={() => {
         console.log(`Registering a new ship for ${wallet?.details.account}`)
-        wallet?.contract.register({ gasLimit: 30000000 }).then(() => console.log('Registered'), error => console.warn('Error', error))
+        wallet?.contract.register().then(() => console.log('Registered'), error => console.warn('Error', error))
       }}>Register</button>
       <button onClick={next}>Turn</button>
     </div>
