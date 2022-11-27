@@ -19,7 +19,7 @@ contract Main {
   mapping(uint => address) private ships;
   mapping(uint => address) private owners;
   mapping(address => uint) private count;
-
+ 
   event Size(uint width, uint height);
   event Touched(uint ship, uint x, uint y);
   event Registered(
@@ -38,7 +38,7 @@ contract Main {
 
   function register(address ship) external {
     require(count[msg.sender] < 2, 'Only two ships');
-    require(used[ship], 'Ship alread on the board');
+    require(!used[ship], 'Ship alread on the board');
     require(index <= game.height * game.width, 'Too much ship on board');
     count[msg.sender] += 1;
     ships[index] = ship;

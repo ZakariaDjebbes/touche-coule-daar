@@ -2,7 +2,7 @@ import { ethers } from 'ethers'
 import * as ethereum from './ethereum'
 import { contracts } from '@/contracts.json'
 import type { Main } from '$/Main'
-import type { MyShip } from '$/Ship.sol'
+import type { PlayerShip } from '$/PlayerShip'
 export type { Main } from '$/Main'
 
 export const correctChain = () => {
@@ -23,5 +23,4 @@ export const init = async (details: ethereum.Details) => {
   const contract_ = signer ? contract.connect(signer) : contract
   return contract_ as any as Main
 }
-
-export const myShip = () => contracts.MyShip.address
+export const playerShip = contracts.PlayerShip.address

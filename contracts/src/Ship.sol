@@ -8,4 +8,3 @@ abstract contract Ship {
   function fire() public virtual returns (uint, uint);
   function place(uint width, uint height) public virtual returns (uint, uint);
 }
-
